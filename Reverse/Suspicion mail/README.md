@@ -1,6 +1,6 @@
 # susoicion mail
 
-![alt text](image.png)
+![alt text](./image.png)
 Полученное письмо содержит архив.
 ![alt text](image-1.png)
 Внутри архива исполняемый файл, который просит пароль, описанный в письме.
