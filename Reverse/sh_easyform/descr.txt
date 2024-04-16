@@ -1,0 +1,5 @@
+It's a shellcode time! Check what it creates.
+
+	MD5 INFO
+mrbob.exe 	dc5c3035b5ae05728d62b14105cf324b
+shellcode.bin 	b02037d6d95e4095c977e9255dd8ab8d
