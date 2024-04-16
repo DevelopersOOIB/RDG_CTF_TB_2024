@@ -1,0 +1,42 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:file:./${DB_NAME:testbd}
+    username: ${DB_USERNAME:developer}
+    password: ${DB_PASSWORD:3875YWhBCKdF}
+  jpa:
+    show-sql: false
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.xml
+    drop-first: false
+  security:
+    user:
+      name: ${SEC_NAME:admin}
+      password: ${SEC_PASSWORD:Q6Ko0154xwdVURWZvXKq}
+  jwt:
+    secret: ${JWT_ACCESS_SECRET:secretkey}
+    access_token_lifetime: ${ACCESS_TOKEN_LIFETIME:PT180M}
+    refresh_token_lifetime: ${REFRESH_TOKEN_LIFETIME:PT540M}
+    authentication-header: ${AUTHORIZATION_HEADER:Authorization}
+    authentication-type: ${AUTHENTICATION_TYPE:Bearer}
+
+open-api:
+  security-schemes:
+    - name: bearer-auth
+      scheme: bearer
+      bearer-format: jwt
+      type: http
+
+springdoc:
+  api-docs:
+    path: /api/docs
+    enabled: true
+
+ctf:
+  flag: ${CTF_SECRET_FLAG:odna_oshibka_i_ty_oshibsya}

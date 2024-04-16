@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1_create_roles_table" author="yato">
+        <createTable tableName="roles">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="roles_pk"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false" unique="true" uniqueConstraintName="roles_name_uk"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="2_create_users_table" author="yato">
+        <createTable tableName="users">
+            <column name="id" type="bigint" autoIncrement="true" >
+                <constraints nullable="false" primaryKey="true" primaryKeyName="users_pk"/>
+            </column>
+            <column name="username" type="varchar(255)">
+                <constraints nullable="false" unique="true" uniqueConstraintName="users_username_uk"/>
+            </column>
+            <column name="password" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="role_id" type="bigint">
+                <constraints nullable="false" referencedColumnNames="id" referencedTableName="roles" foreignKeyName="users_on_roles_fk"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="3_add_default_roles" author="yato">
+        <insert tableName="roles">
+            <column name="name" value="ADMIN"/>
+        </insert>
+        <insert tableName="roles">
+            <column name="name" value="USER"/>
+        </insert>
+        <insert tableName="roles">
+            <column name="name" value="GUEST"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>
